@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: GWS Mauritius Share Price Sync for WordPress
+ * Plugin Name: GWS Mauritius SEM Share Price Sync for WordPress
  * Author: GWS Technologies LTD
  * Author URI: https://www.gws-technologies.com/
  * Plugin URI: https://www.gws-technologies.com/
