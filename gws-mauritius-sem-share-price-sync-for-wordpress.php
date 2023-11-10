@@ -196,25 +196,30 @@ class GWS_SEM_Share_Price_Sync {
         if( $process ){
 
                 $url = get_field("gws_sem_api_url","option");
-                $xml = simplexml_load_file($url);
 
-                $share_price = $xml->quote->sharepprice;
-                $sem_date = $xml->timestamp->date;
-                $sem_time = $xml->timestamp->time;
-                $sem_semdex = $xml->quote->semdex;
+                if(!empty($url)){
+                    $xml = simplexml_load_file($url);
 
-                $price = str_ireplace(",","",strip_tags($share_price->asXML()));
-                $date = strip_tags($sem_date->asXML());
-                $time = strip_tags($sem_time->asXML());
-                $semdex = str_ireplace(",","",strip_tags($sem_semdex->asXML()));
+                    if($xml){
+                        $share_price = $xml->quote->sharepprice;
+                        $sem_date = $xml->timestamp->date;
+                        $sem_time = $xml->timestamp->time;
+                        $sem_semdex = $xml->quote->semdex;
 
-                $dbtime = strtotime($date);
-                $dbdate = date('Y-m-d',$dbtime);
+                        $price = str_ireplace(",","",strip_tags($share_price->asXML()));
+                        $date = strip_tags($sem_date->asXML());
+                        $time = strip_tags($sem_time->asXML());
+                        $semdex = str_ireplace(",","",strip_tags($sem_semdex->asXML()));
 
-                $data = array('sem_date' => $dbdate, 'sem_time' => $time, 'sharepprice' => $price ,'semdex' => $semdex);
+                        $dbtime = strtotime($date);
+                        $dbdate = date('Y-m-d',$dbtime);
 
-                if($data['sharepprice'] > 0 ){
-                    $wpdb->insert($this->table_name,$data);
+                        $data = array('sem_date' => $dbdate, 'sem_time' => $time, 'sharepprice' => $price ,'semdex' => $semdex);
+
+                        if($data['sharepprice'] > 0 ){
+                            $wpdb->insert($this->table_name,$data);
+                        }
+                    }
                 }
             }
 
