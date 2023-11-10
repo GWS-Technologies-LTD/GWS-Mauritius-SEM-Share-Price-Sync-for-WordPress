@@ -30,6 +30,10 @@ $shareprice = $shareprice_sync->get_sharepprice();
 $shareprice_sync = new GWS_SEM_Share_Price_Sync();
 $shareprice = $shareprice_sync->get_sharepprice("yyyy-mm-dd);
 
+- Get all historical rates:
+$shareprice_sync = new GWS_SEM_Share_Price_Sync();
+$all_rates = $shareprice_sync->get_all_share_prices();
+
 # Contribution
 - You can contribute by going to https://github.com/GWS-Technologies-LTD/mcb-juice-woocommerce-gateway
 

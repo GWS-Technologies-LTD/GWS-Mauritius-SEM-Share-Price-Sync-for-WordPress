@@ -299,6 +299,24 @@ class GWS_SEM_Share_Price_Sync {
         
         return $trend;
     }
+
+    public function get_all_share_prices(){
+        global $wpdb;
+
+        $query = "SELECT * FROM {$this->table_name} ORDER BY sem_date ASC";
+        $results = $wpdb->get_results($query);
+        
+        if( $results ){
+            foreach($results as $result){
+                $rate["shareprice"] = $result->sharepprice;
+                $rate["date"] = $result->sem_date;
+                $rate["time"] = $result->sem_time;
+                $rates[] = $rate;
+            }
+        }
+
+        return $rates;
+    }
 }
 
 new GWS_SEM_Share_Price_Sync();
