@@ -1,9 +1,10 @@
 <?php
 /**
- * Plugin Name: GWS Mauritius SEM Share Price Sync for WordPress
+ * Plugin Name: GWS Mauritius SEM Share Price Sync
  * Author: GWS Technologies LTD
  * Author URI: https://www.gws-technologies.com/
- * Plugin URI: https://www.gws-technologies.com/
+ * Plugin URI: https://github.com/GWS-Technologies-LTD/GWS-Mauritius-SEM-Share-Price-Sync-for-WordPress
+ * Description: Sync SEM share price from SEM XML Feed
  * Version: 1.0.4
  */
 

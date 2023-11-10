@@ -1,3 +1,14 @@
+=== GWS Mauritius SEM Share Price Sync ===
+Contributors: davidcommarmond
+Author URI: https://www.linkedin.com/in/jcommarmond/
+Plugin URI: https://www.gws-technologies.com/
+Tags: semdex
+Requires at least: 6.0.0
+Tested up to: 6.4.1
+Requires PHP: 8.0
+Stable tag: 1.0.3
+License: GPLv2
+
 # Intro
 Sync your SEM Share Price in Wordpress
 
