@@ -24,3 +24,12 @@ Sync your SEM Share Price in Wordpress
 - In your theme, you can retrieve the share price thus
 - Latest shareprice >> GWS_SEM_Share_Price_Sync::get_sharepprice_trend();
 - Shareprice for a specific date >> GWS_SEM_Share_Price_Sync::get_sharepprice_trend("yyyy-mm-dd");
+
+# Contribution
+- You can contribute by going to https://github.com/GWS-Technologies-LTD/mcb-juice-woocommerce-gateway
+
+# Feature Request
+- You may send your feature requests by e-mail on support@gws-technologies.com
+
+# Custom Development
+If you need plugin customization, ERP integration, or custom WooCommerce or WordPress Development, get in touch with us at https://www.gws-technologies.com/
