@@ -5,7 +5,7 @@
  * Author URI: https://www.linkedin.com/in/jcommarmond/
  * Plugin URI: https://github.com/GWS-Technologies-LTD/GWS-Mauritius-SEM-Share-Price-Sync-for-WordPress
  * Description: Sync SEM share price from SEM XML Feed
- * Version: 1.0.4
+ * Version: 1.0.5
  */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -14,11 +14,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Currently plugin version.
- * Start at version 1.0.4 and use SemVer - https://semver.org
+ * Start at version 1.0.5 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
 if (!defined('GWS_SEM_SHARE_PRICE_SYNC_VERSION')) {
-    define('GWS_SEM_SHARE_PRICE_SYNC_VERSION', '1.0.4');
+    define('GWS_SEM_SHARE_PRICE_SYNC_VERSION', '1.0.5');
 }
 
 class GWS_SEM_Share_Price_Sync {
@@ -28,7 +28,7 @@ class GWS_SEM_Share_Price_Sync {
 
     function __construct(){
         global $wpdb;
-        $this->table_name = $wpdb->prefix . 'gws_sharepprices';
+        $this->table_name = $wpdb->prefix . 'gws_shareprices';
         $this->version = GWS_SEM_SHARE_PRICE_SYNC_VERSION;
 
         add_action('init', function(){
@@ -226,17 +226,19 @@ class GWS_SEM_Share_Price_Sync {
         return;
     }
 
-    public static function get_sharepprice ($user_date = ""){
+    public function get_sharepprice ($user_date = ""){
         global $wpdb;
 
         $date = $user_date;
         if(empty($date)){
-            $date = date("Y-m-d");
+            $query = "SELECT sharepprice FROM {$this->table_name} ORDER BY sem_date DESC LIMIT 1";
+        }else{
+            $date = str_replace('/' , '-' , $date);
+            $formatted_date = date('Y-m-d' , strtotime($date));
+            $query = "SELECT sharepprice FROM {$this->table_name} WHERE sem_date = '$formatted_date'";
         }
-        $date = str_replace('/' , '-' , $date);
-        $formatted_date = date('Y-m-d' , strtotime($date));
         
-        $query = "SELECT sharepprice FROM {$this->table_name} WHERE sem_date = '$formatted_date'";
+        
         $results = $wpdb->get_results($query);
         
         if( $results ){
@@ -270,7 +272,7 @@ class GWS_SEM_Share_Price_Sync {
         return $rate;
     }
 
-    public static function get_sharepprice_trend($date=""){
+    public function get_sharepprice_trend($date=""){
         global $wpdb;
 
         if(empty($date)){
